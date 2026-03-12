@@ -1,0 +1,36 @@
+class ComputeStatistics:
+
+    def compute_stats(self, file):
+        total = 0
+        summation = 0
+        minimum = None
+        maximum = None
+
+        try:
+            with open(file, "r") as f:
+                for line in f:
+                    num = int(line.strip())
+
+                    total += 1
+                    summation += num
+
+                    if minimum is None or num < minimum:
+                        minimum = num
+
+                    if maximum is None or num > maximum:
+                        maximum = num
+
+            average = round(summation / total)
+
+            print("total =", total)
+            print("summation =", summation)
+            print("average =", average)
+            print("Minimum =", minimum)
+            print("Maximum =", maximum)
+
+        except IOError as e:
+            print("Error:", e)
+
+
+cs = ComputeStatistics()
+cs.compute_stats("random_nums.txt")
